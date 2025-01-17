@@ -1,0 +1,25 @@
+analyze -sv Simon.v
+
+elaborate -top Simon
+
+clock clk
+reset rst
+
+#If level is 0 then pattern may contain up to 1 bit
+assert {level == 0 -> (pattern[0] == 1 ^ pattern[1] == 1 ^ pattern[2] == 1 ^ pattern[3] == 1) ^ pattern == 0 }
+
+#If in INPUT stage a legal pattern must be made in order to transition to PLAYBACK stage
+assert {level == 0 && mode_leds == 3'b001 && pattern == 3'b0001 -> mode_leds == 3'b010}
+assert {level == 1 && mode_leds == 3'b001 && pattern == 3'b0101 -> mode_leds == 3'b010}
+
+assert {level == 0 && mode_leds == 3'b001 && pattern == 3'b0101 -> mode_leds == 3'b001}
+
+#Upon switch in pattern, pattern_leds should change instantaneously
+assert {pclk |-> pattern_leds == pattern }
+
+#In PLAYBACK stage, every press of pclk should have the pattern_leds playback the patterns one at 
+#a time until there is no patterns left (I dont know how to test for multiple sets i.e when I need to set pattern twice in order to make sure pattern_leds plays back correctly)
+#assert {mode_leds == 3'b010 && pclk }
+
+
+prove -all
