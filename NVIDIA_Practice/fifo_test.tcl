@@ -5,6 +5,7 @@ elaborate -top fifo
 clock clk
 reset !rst_n
 
+assume {push -> fifo_in[7]==0}
 #check for rst_n working
 assert {!rst_n |-> ##1 (w_ptr == 0)}
 assert {!rst_n |-> ##1 (r_ptr == 0)}
