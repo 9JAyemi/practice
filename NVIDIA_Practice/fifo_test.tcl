@@ -3,7 +3,7 @@ analyze -sv fifo.v
 elaborate -top fifo
 
 clock clk
-reset rst_n
+reset !rst_n
 
 #check for rst_n working
 assert {rst_n |-> ##1 (w_ptr == 0)}
