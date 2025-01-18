@@ -2,6 +2,7 @@
 // Testbench Module for Multiplier
 // some code adapted from ECE206 testing material
 //===============================================================================
+
 `timescale 1ns/100ps
 
 `include "Multiplier.v"
