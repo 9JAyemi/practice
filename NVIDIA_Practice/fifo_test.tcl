@@ -11,7 +11,7 @@ assert {!rst_n |-> ##1 (r_ptr == 0)}
 assert {!rst_n |-> ##1 (data_out == 0)}
 
 # when full if write is enabled  count value shouldnt change
-assert {full && w_en && !r_en |-> ##1 $stable(count)}
+assert {full && w_en && !r_en && rst_n |-> ##1 $stable(count)}
 
 # Set the time limit to 1 hour (3600 seconds)
 set_prove_time_limit 3600
