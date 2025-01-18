@@ -6,9 +6,9 @@ clock clk
 reset rst_n
 
 #check for rst_n working
-assert {!rst_n |-> (w_ptr == 0)}
-assert {!rst_n |-> (r_ptr == 0)}
-assert {!rst_n |-> (data_out == 0)}
+assert {!rst_n |=> (w_ptr == 0)}
+assert {!rst_n |=> (r_ptr == 0)}
+assert {!rst_n |=> (data_out == 0)}
 
 # when full if write is enabled  count value shouldnt change
 assert {full && w_en && !r_en |-> ##1 $stable(count)}
