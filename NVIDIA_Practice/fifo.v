@@ -20,6 +20,7 @@ if(!rst_n) begin
     w_ptr <= 0;
     r_ptr <= 0;
     data_out <= 0;
+    count <= 0;
 end
 else begin
       case({w_en,r_en})
