@@ -2,7 +2,7 @@ analyze -sv Simon.v
 
 elaborate -top Simon
 
-clock clk
+clock uclk
 reset rst
 
 #If level is 0 then pattern may contain up to 1 bit
