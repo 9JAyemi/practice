@@ -17,3 +17,8 @@ assert {coin_in == 2'b11 |-> ##1 Total_Amount == 100}
 
 # assume {$past(coin_in) == 2'b10}
 assert {coin_in == 2'b11 |-> ##1 Total_Amount == 125}
+
+# Set the time limit to 1 hour (3600 seconds)
+set_prove_time_limit 3600
+set_engine_mode Tri
+prove -all
