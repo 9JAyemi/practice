@@ -15,8 +15,14 @@ assert {reset & coin_in == 2'b01 |-> ##1 Total_Amount == 10}
 assert {reset & coin_in == 2'b10 |-> ##1 Total_Amount == 25}
 assert {reset & coin_in == 2'b11 |-> ##1 Total_Amount == 100}
 
-# assume {$past(coin_in) == 2'b10}
+assume {$past(coin_in) == 2'b10}
 assert {coin_in == 2'b11 |-> ##1 Total_Amount == 125}
+
+# dispense properties and subtraction
+assert {(Total_Amount == ITEM_COST) || (Total_Amount > ITEM_COST)  |-> dispense == 1 }
+assert {!reset && (Total_Amount < ITEM_COST) |-> (dispense == 0)}
+assume {$past(dispense) == 1}
+assert {$rise(clk) |-> dispense == 1}
 
 # Set the time limit to 1 hour (3600 seconds)
 set_prove_time_limit 3600
