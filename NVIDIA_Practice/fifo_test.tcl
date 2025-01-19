@@ -22,7 +22,7 @@ assert {(count == 4) && w_en && !r_en |-> ##1 (count == 5)}
 assert {full && w_en && !r_en |-> ##1 $stable(count)}
 assert {empty && r_en && !w_en |-> ##1 $stable(count)}
 
-assert {!rst_n |-> ##1 w_en & !full & (fifo[w_ptr] == data_in)}
+assert {!rst_n |-> ##4 w_en & !full & (fifo[w_ptr] == data_in)}
 
 
 # Set the time limit to 1 hour (3600 seconds)
