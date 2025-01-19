@@ -13,6 +13,9 @@ assert {!rst_n |-> ##1 (data_out == 0)}
 # how would you check if count changed from one clock cycle ($past)
 
 assert {full && r_en && !w_en |-> ##1 (count == ($past(count) - 1))} 
+assert {empty && w_en && !r_en |-> ##1 (count == ($past(count) + 1))}
+
+assert {(count == 4) && w_en && !r_en |-> ##1 (count == 5)}
 
 # when full if write is enabled  count value shouldnt change
 # when empty if read is enabled count value shouldnt change
