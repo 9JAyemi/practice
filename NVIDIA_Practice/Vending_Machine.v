@@ -23,7 +23,7 @@ module Vending_Machine(
 );
 
     // Parameters for coin values
-    parameter COIN_5 = 5, COIN_10 = 10, COIN_25 = 25, COIN_100, ITEM_COST = 200;
+    parameter COIN_5 = 5, COIN_10 = 10, COIN_25 = 25, COIN_100 = 100, ITEM_COST = 200;
 
     // Sequential logic to update the total amount
     always @(posedge clk or posedge reset) begin
