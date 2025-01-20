@@ -47,7 +47,7 @@ module SimonDatapath(
 		if (reset == 1) begin
 			i <= 0;
 			ns <= 0;
-			lvl <= 0;
+			lvl <= level;
 		end
 		else begin
 			// internal updates
@@ -79,7 +79,7 @@ module SimonDatapath(
 	//----------------------------------------------------------------------
 
 	assign pattern_leds = (m1 || m3) ? pattern : cur_sequence;
-	assign legal = level || (pattern == 4'b0001 || pattern == 4'b0010 || pattern == 4'b0100 || pattern == 4'b1000);
+	assign legal = lvl || (pattern == 4'b0001 || pattern == 4'b0010 || pattern == 4'b0100 || pattern == 4'b1000);
 	assign i_eq_ns = (i == ns);
 	assign right_guess = (cur_sequence == pattern);
 
