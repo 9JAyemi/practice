@@ -41,6 +41,8 @@ module SimonDatapath(
 	//----------------------------------------------------------------------
 
 	always @(posedge clk) begin
+
+		lvl <= 0;
 		// global reset
 		if (reset == 1) begin
 			i <= 0;
