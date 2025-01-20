@@ -10,10 +10,10 @@ reset rst
 assert {level == 0 && reset && legal |-> ((pattern == 4'b0001) ^ (pattern == 4'b0010) ^ (pattern == 4'b0100) ^ (pattern == 4'b1000)) }
 
 #If in INPUT stage a legal pattern must be made in order to transition to PLAYBACK stage
-assert {level == 0 && mode_leds == 3'b001 && pattern == 3'b0001 -> mode_leds == 3'b010}
-assert {level == 1 && mode_leds == 3'b001 && pattern == 3'b0101 -> mode_leds == 3'b010}
+assert {level == 0 && mode_leds == 3'b001 && pattern == 3'b0001 |-> ##1 mode_leds == 3'b010}
+assert {level == 1 && mode_leds == 3'b001 && pattern == 3'b0101 |-> ##1 mode_leds == 3'b010}
 
-assert {level == 0 && mode_leds == 3'b001 && pattern == 3'b0101 -> mode_leds == 3'b001}
+assert {level == 0 && mode_leds == 3'b001 && pattern == 3'b0101 -> ##1 mode_leds == 3'b001}
 
 #Upon switch in pattern, pattern_leds should change instantaneously
 assert {pclk |-> pattern_leds == pattern }
