@@ -7,7 +7,7 @@ reset rst
 
 #If level is 0 then pattern may contain up to 1 bit
 # assert {level == 0 -> (pattern[0] == 1 ^ pattern[1] == 1 ^ pattern[2] == 1 ^ pattern[3] == 1) ^ pattern == 0 }
-assert {level == 0 && legal |-> ((pattern == 4'b0001) ^ (pattern == 4'b0010) ^ (pattern == 4'b0100) ^ (pattern == 4'b1000)) }
+assert {level == 0 && rest && legal |-> ((pattern == 4'b0001) ^ (pattern == 4'b0010) ^ (pattern == 4'b0100) ^ (pattern == 4'b1000)) }
 
 #If in INPUT stage a legal pattern must be made in order to transition to PLAYBACK stage
 assert {level == 0 && mode_leds == 3'b001 && pattern == 3'b0001 -> mode_leds == 3'b010}
